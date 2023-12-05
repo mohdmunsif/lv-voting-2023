@@ -18,16 +18,15 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+// Route::middleware([
+//     'auth:sanctum',
+//     config('jetstream.auth_session'),
+//     'verified',
+// ])->group(function () {
+//     Route::get('/dashboard', function () {
+//         return view('dashboard');
+//     })->name('dashboard');
+// });
 
 Route::get('/', [IdeaController::class, 'index'])->name('idea.index');
 Route::get('/ideas/{idea:slug}', [IdeaController::class, 'show'])->name('idea.show');
-

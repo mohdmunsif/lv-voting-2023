@@ -9,6 +9,8 @@ use App\Models\Status;
 use App\Models\Vote;
 use Livewire\WithPagination;
 
+use Livewire\Attributes\On;
+
 
 use Livewire\Component;
 
@@ -61,7 +63,7 @@ class IdeasIndex extends Component
         }
     }
 
-
+    #[On('queryStringUpdatedStatus')]
     public function queryStringUpdatedStatus($newStatus)
     {
         $this->resetPage();
