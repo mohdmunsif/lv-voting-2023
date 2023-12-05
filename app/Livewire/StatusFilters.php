@@ -27,15 +27,15 @@ class StatusFilters extends Component
     public function setStatus($newStatus)
     {
         $this->status = $newStatus;
-        $this->emit('queryStringUpdatedStatus', $this->status);
+        $this->dispatch('queryStringUpdatedStatus', $this->status);
 
         if ($this->getPreviousRouteName() === 'idea.show') {
             return redirect()->route('idea.index', [
-                    'status' => $this->status,
-                ]);
+                'status' => $this->status,
+            ]);
         }
     }
-    
+
     public function render()
     {
         return view('livewire.status-filters');
@@ -45,6 +45,4 @@ class StatusFilters extends Component
     {
         return app('router')->getRoutes()->match(app('request')->create(url()->previous()))->getName();
     }
-    
-    
 }

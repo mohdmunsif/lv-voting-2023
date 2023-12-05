@@ -12,7 +12,7 @@ use Livewire\Component;
 
 class CreateIdea extends Component
 {
-    
+
     use WithAuthRedirects;
 
     public $title;
@@ -50,9 +50,11 @@ class CreateIdea extends Component
         return redirect()->route('idea.index');
     }
 
-    
+
     public function render()
     {
-        return view('livewire.create-idea');
+        return view('livewire.create-idea', [
+            'categories' => Category::all(),
+        ]);
     }
 }

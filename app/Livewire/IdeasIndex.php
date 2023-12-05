@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Http\Livewire\Traits\WithAuthRedirects;
+use App\Livewire\Traits\WithAuthRedirects;
 use App\Models\Category;
 use App\Models\Idea;
 use App\Models\Status;
@@ -66,8 +66,8 @@ class IdeasIndex extends Component
         $this->resetPage();
         $this->status = $newStatus;
     }
-    
-    
+
+
     public function render()
     {
 
@@ -91,11 +91,12 @@ class IdeasIndex extends Component
                         $query->where('spam_reports', '>', 0);
                     });
                 })->when(strlen($this->search) >= 3, function ($query) {
-                    return $query->where('title', 'like', '%'.$this->search.'%');
+                    return $query->where('title', 'like', '%' . $this->search . '%');
                 })
-                ->addSelect(['voted_by_user' => Vote::select('id')
-                    ->where('user_id', auth()->id())
-                    ->whereColumn('idea_id', 'ideas.id')
+                ->addSelect([
+                    'voted_by_user' => Vote::select('id')
+                        ->where('user_id', auth()->id())
+                        ->whereColumn('idea_id', 'ideas.id')
                 ])
                 ->withCount('votes')
                 ->withCount('comments')
