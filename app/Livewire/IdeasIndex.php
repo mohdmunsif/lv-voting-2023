@@ -61,6 +61,7 @@ class IdeasIndex extends Component
         }
     }
 
+
     public function queryStringUpdatedStatus($newStatus)
     {
         $this->resetPage();

@@ -46,7 +46,7 @@ class AddComment extends Component
 
         $this->idea->user->notify(new CommentAdded($newComment));
 
-        $this->emit('commentWasAdded', 'Comment was posted!');
+        $this->dispatch('commentWasAdded', 'Comment was posted!');
     }
 
     public function render()

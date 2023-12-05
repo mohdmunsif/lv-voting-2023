@@ -18,7 +18,7 @@ class DeleteComment extends Component
     {
         $this->comment = Comment::findOrFail($commentId);
 
-        $this->emit('deleteCommentWasSet');
+        $this->dispatch('deleteCommentWasSet');
     }
 
     public function deleteComment()
@@ -30,7 +30,7 @@ class DeleteComment extends Component
         Comment::destroy($this->comment->id);
         $this->comment = null;
 
-        $this->emit('commentWasDeleted', 'Comment was deleted!');
+        $this->dispatch('commentWasDeleted', 'Comment was deleted!');
     }
 
 

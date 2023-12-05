@@ -24,12 +24,12 @@ class SetStatus extends Component
 
     public function setStatus()
     {
-        if (auth()->guest() || ! auth()->user()->isAdmin()) {
+        if (auth()->guest() || !auth()->user()->isAdmin()) {
             abort(Response::HTTP_FORBIDDEN);
         }
 
         if ($this->idea->status_id === (int) $this->status) {
-            $this->emit('statusWasUpdatedError', 'Status is the same!');
+            $this->dispatch('statusWasUpdatedError', 'Status is the same!');
 
             return;
         }
@@ -51,7 +51,7 @@ class SetStatus extends Component
 
         $this->reset('comment');
 
-        $this->emit('statusWasUpdated', 'Status was updated successfully!');
+        $this->dispatch('statusWasUpdated', 'Status was updated successfully!');
     }
 
 

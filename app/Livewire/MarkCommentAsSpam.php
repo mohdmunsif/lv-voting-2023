@@ -18,7 +18,7 @@ class MarkCommentAsSpam extends Component
     {
         $this->comment = Comment::findOrFail($commentId);
 
-        $this->emit('markAsSpamCommentWasSet');
+        $this->dispatch('markAsSpamCommentWasSet');
     }
 
     public function markAsSpam()
@@ -30,10 +30,10 @@ class MarkCommentAsSpam extends Component
         $this->comment->spam_reports++;
         $this->comment->save();
 
-        $this->emit('commentWasMarkedAsSpam', 'Comment was marked as spam!');
+        $this->dispatch('commentWasMarkedAsSpam', 'Comment was marked as spam!');
     }
-    
-    
+
+
     public function render()
     {
         return view('livewire.mark-comment-as-spam');

@@ -23,7 +23,7 @@ class EditComment extends Component
         $this->comment = Comment::findOrFail($commentId);
         $this->body = $this->comment->body;
 
-        $this->emit('editCommentWasSet');
+        $this->dispatch('editCommentWasSet');
     }
 
     public function updateComment()
@@ -37,7 +37,7 @@ class EditComment extends Component
         $this->comment->body = $this->body;
         $this->comment->save();
 
-        $this->emit('commentWasUpdated', 'Comment was updated!');
+        $this->dispatch('commentWasUpdated', 'Comment was updated!');
     }
 
 

@@ -18,14 +18,14 @@ class MarkIdeaAsNotSpam extends Component
 
     public function markAsNotSpam()
     {
-        if (auth()->guest() || ! auth()->user()->isAdmin()) {
+        if (auth()->guest() || !auth()->user()->isAdmin()) {
             abort(Response::HTTP_FORBIDDEN);
         }
 
         $this->idea->spam_reports = 0;
         $this->idea->save();
 
-        $this->emit('ideaWasMarkedAsNotSpam', 'Spam Counter was reset!');
+        $this->dispatch('ideaWasMarkedAsNotSpam', 'Spam Counter was reset!');
     }
 
 
