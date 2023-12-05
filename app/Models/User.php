@@ -58,4 +58,29 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+
+
+    public function ideas()
+    {
+        return $this->hasMany(Idea::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function votes()
+    {
+        return $this->belongsToMany(Idea::class, 'votes');
+    }
+
+    public function isAdmin()
+    {
+        return in_array($this->email, [
+            'munsif@gmail.com', 
+        ]);
+    }    
+
 }
